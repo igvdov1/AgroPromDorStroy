@@ -2,7 +2,7 @@ import sys
 from PyQt6.QtWidgets import QApplication,  QFileDialog, QWidget, QGridLayout, QListWidget, QPushButton, QLabel
 from PyQt6.QtCore import QUrl
 from pathlib import Path
-
+from CreateDocumentation import CreateFullDocumentation
 
 class MainWindow(QWidget):
     def __init__(self, *args, **kwargs):
@@ -82,6 +82,7 @@ class MainWindow(QWidget):
         items_sm = []
         for x in range(self.file_list_sm.count()):
             items_sm.append(self.file_list_sm.item(x).text())
+        CreateFullDocumentation(links_to_smeta= items_sm, link = r'C:\Users\igvdo\.vscode\app_for_agroprom\results').create_docs()
         print(items_sm)
 
         items_jr = []
