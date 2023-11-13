@@ -3,6 +3,8 @@ from PyQt6.QtWidgets import QApplication,  QFileDialog, QWidget, QGridLayout, QL
 from PyQt6.QtCore import QUrl
 from pathlib import Path
 from CreateDocumentation import CreateFullDocumentation
+from AdditionalMaterialsWindow import AdditionalMaterialsWindow
+
 
 class MainWindow(QWidget):
     def __init__(self, *args, **kwargs):
@@ -68,6 +70,8 @@ class MainWindow(QWidget):
         document_link.setText(text)
         layout.addWidget(document_link, 0, 1)
 
+
+        self.add_win = AdditionalMaterialsWindow()
         #add names to names file
         # self.change_names = QLabel('')
 
@@ -79,11 +83,13 @@ class MainWindow(QWidget):
         print("Link clicked:", url)
 
     def the_button_was_clicked(self):
+        self.add_win.show()
         items_sm = []
         for x in range(self.file_list_sm.count()):
             items_sm.append(self.file_list_sm.item(x).text())
-        CreateFullDocumentation(links_to_smeta= items_sm, link = r'C:\Users\igvdo\.vscode\app_for_agroprom\results').create_docs()
-        print(items_sm)
+        self.add_win.get_links(items_sm)
+        # CreateFullDocumentation(links_to_smeta= items_sm, link = r'C:\Users\igvdo\.vscode\app_for_agroprom\results').create_docs()
+        # print(items_sm)
 
         items_jr = []
         for x in range(self.file_list_jr.count()):
